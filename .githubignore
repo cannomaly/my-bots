@@ -1,0 +1,131 @@
+# ---- Operating System Files ----
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---- Application Files ----
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+*.py[cod]
+__pycache__/
+*.so
+
+# Java
+*.class
+# Generated files
+target/
+out/
+
+# C++
+*.obj
+*.o
+*.lo
+*.la
+*.al
+*.libs
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+
+# Rails
+*.log
+*.tmp
+tmp/
+log/
+*.pid
+
+# ---- Environment Files ----
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ---- IDE and Text Editor Files ----
+# VS Code
+.vscode/
+
+# JetBrains products (e.g., IntelliJ IDEA)
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Emacs
+*~.emacs.d/
+*.emacs.desktop
+
+# Vim
+*.swp
+*.swo
+*.swn
+Session.vim
+
+# Other
+*.DS_Store
+*.log
+*.tmp
+
+# ---- Specific Files ----
+# Configuration files for various tools
+*.iml
+*.ipr
+*.iws
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.psm1
+*.psd1
+
+# Specific to PyCharm
+.idea/
+
+# Specific to web development
+.build/
+
+# Specific to React Native
+.expo/
+
+# Editor-specific
+.vscode/
+.idea/
+
+# If you're using React Native
+node_modules/
+
+# Specific to Indy-based, Lazarus for Delphi
+*.lrs
+*.fpc
+*.lpi
+*.bak
+*.ppu
+
+# Rust/Cargo-specific
+target/
+Cargo.lock
+
+# Python-specific
+__pycache__/
+*.pyc
+
+# Go-specific
+/bin/
+# Dependency directories (remove the comment below to unignore and enable these directories)
+# vendor/

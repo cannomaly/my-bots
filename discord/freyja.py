@@ -34,7 +34,7 @@ async def on_message(message):
             try:
                 # Use ChatCompletion for chat-based models (gpt-3.5-turbo or gpt-4)
                 response = openai.ChatCompletion.create(
-                    model="gpt-4",  # You can also use "gpt-4" if available
+                    model="gpt-4o",  # You can also use "gpt-4" if available
                     messages=[
                         {"role": "system", "content": "You are a helpful assistant."},
                         {"role": "user", "content": user_message}
@@ -60,7 +60,7 @@ async def on_message(message):
 async def id_model(ctx):
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4",  # Use GPT-4 here
+            model="gpt-4o",  # Use GPT-4 here
             messages=[{"role": "system", "content": "You are a helpful assistant."},
                       {"role": "user", "content": "Can you tell me which model you are?"}],
             max_tokens=10

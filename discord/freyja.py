@@ -56,5 +56,22 @@ async def on_message(message):
     # Ensure other commands and events still work
     await bot.process_commands(message)
 
+@bot.command(name='identify_model')
+async def id_model(ctx):
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4",  # Use GPT-4 here
+            messages=[{"role": "system", "content": "You are a helpful assistant."},
+                      {"role": "user", "content": "Can you tell me which model you are?"}],
+            max_tokens=10
+        )
+
+        # Log the model used and send the model name as a message
+        model_used = response['model']
+        await ctx.send(f"I'm currently using the model: {model_used}")
+
+    except Exception as e:
+        await ctx.send(f"Error: {str(e)}")
+
 # Run the bot
 bot.run(DISCORD_TOKEN)

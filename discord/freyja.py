@@ -16,7 +16,7 @@ TOKEN = os.getenv("DISCORD_TOKEN_FREYJA")
 if not openai.api_key:
     raise ValueError("OpenAI API key is missing in the environment variables.")
 
-if not DISCORD_TOKEN:
+if not TOKEN:  # Corrected from DISCORD_TOKEN to TOKEN
     raise ValueError("Discord token is missing in the environment variables.")
 
 # Set up intents (required for Discord bot)
@@ -80,7 +80,7 @@ async def on_message(message):
                 while retries < max_retries:
                     try:
                         response = openai.ChatCompletion.create(
-                            model="gpt-4o",  # Your tested model
+                            model="gpt-4-turbo",  # Your tested model
                             messages=[
                                 {"role": "system", "content": "You are a helpful assistant."},
                                 {"role": "user", "content": user_message}
@@ -135,7 +135,7 @@ async def on_message(message):
             while retries < max_retries:
                 try:
                     response = openai.ChatCompletion.create(
-                        model="gpt-4o",  # Your tested model
+                        model="gpt-4-turbo",  # Your tested model
                         messages=[
                             {"role": "system", "content": "You are a helpful assistant."},
                             {"role": "user", "content": user_message}
@@ -166,7 +166,7 @@ async def on_message(message):
     elif message.content.startswith('.id_model'):
         try:
             response = openai.ChatCompletion.create(
-                model="gpt-4o",  # Your tested model
+                model="gpt-4-turbo",  # Your tested model
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": "Can you tell me which model you are?"}
@@ -185,4 +185,4 @@ async def on_message(message):
     await bot.process_commands(message)
 
 # Run the bot
-bot.run(DISCORD_TOKEN)
+bot.run(TOKEN)  # Changed this to TOKEN

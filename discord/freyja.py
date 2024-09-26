@@ -19,6 +19,10 @@ bot = commands.Bot(command_prefix='.', intents=intents)
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
+    # Set the bot's activity to "Watching"
+    activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
+    await bot.change_presence(activity=activity)
+
 @bot.event
 async def on_message(message):
     # Ignore messages from the bot itself

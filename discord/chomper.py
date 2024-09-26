@@ -16,6 +16,10 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
+    # Set the bot's activity to "Watching"
+    activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
+    await bot.change_presence(activity=activity)
+
 # Respond when someone with the Members role mentions the bot (@Chomper)
 @bot.event
 async def on_message(message):

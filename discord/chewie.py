@@ -16,6 +16,10 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
+    # Set the bot's activity to "Watching"
+    activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
+    await bot.change_presence(activity=activity)
+
 @bot.event
 async def on_member_join(member):
     # The role name to assign (must match the exact name in your server)

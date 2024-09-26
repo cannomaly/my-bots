@@ -1,19 +1,29 @@
+from dotenv import load_dotenv
+import os
 import discord
 from discord.ext import commands
 
+# Load environment variables
+load_dotenv()
+
+# Bot token for Zeze from the environment file
+TOKEN = os.getenv("DISCORD_TOKEN_ZEZE")
+print(f"Loaded Token: {TOKEN}")  # Debugging line
+
+if TOKEN is None:
+    raise ValueError("DISCORD_TOKEN_ZEZE is not set in the environment.")
+
+# Set up intents
 intents = discord.Intents.default()
 intents.messages = True
 intents.guilds = True
 intents.members = True
 
-# Bot token
-TOKEN = 'YOUR_BOT_TOKEN'
-
 # Set the command prefix
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # Channel ID for the #announcement channel
-ANNOUNCEMENT_CHANNEL_ID = YOUR_ANOUNCEMENT_CHANNEL_ID
+ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594
 
 @bot.event
 async def on_ready():

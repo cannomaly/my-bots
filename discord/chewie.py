@@ -1,10 +1,15 @@
+from dotenv import load_dotenv
+import os
 import discord
 from discord.ext import commands
 
-# Your bot token (make sure to keep this private)
-TOKEN = 'YOUR_TOKEN_HERE'
+# Load environment variables
+load_dotenv()
 
-# Enable both member and message content intents
+# Bot token from the environment file
+TOKEN = os.getenv("DISCORD_TOKEN_CHEWIE")
+
+# Set up intents
 intents = discord.Intents.default()
 intents.members = True  # To track members
 intents.message_content = True  # To listen to message content and commands
@@ -16,7 +21,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-    # Set the bot's activity to "Watching"
+    # Set the bot's activity
     activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
     await bot.change_presence(activity=activity)
 
@@ -31,9 +36,9 @@ async def assign_roles_to_existing_members(guild):
         for member in guild.members:
             # Skip members who already have the correct role
             if member.bot:
-                role_name = "Set_Bots_Role"  # Role to assign to bots
+                role_name = "Frenchies"  # Role to assign to bots
             else:
-                role_name = "Set_Members_Role"  # Role to assign to human members
+                role_name = "Members"  # Role to assign to human members
 
             role = discord.utils.get(guild.roles, name=role_name)
 
@@ -57,9 +62,9 @@ async def on_member_join(member):
     if bot_member.guild_permissions.manage_roles:
         # Check if the new member is a bot or a human
         if member.bot:
-            role_name = "Set_Bot_Role"  # Role to assign to bots
+            role_name = "Frenchies"  # Role to assign to bots
         else:
-            role_name = "Set_Membrers_Role"  # Role to assign to human members
+            role_name = "Members"  # Role to assign to human members
 
         role = discord.utils.get(guild.roles, name=role_name)
 
@@ -80,4 +85,5 @@ async def on_member_join(member):
 async def ping(ctx):
     await ctx.send('Pong!')
 
+# Start the bot
 bot.run(TOKEN)

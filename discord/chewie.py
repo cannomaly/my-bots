@@ -20,45 +20,61 @@ async def on_ready():
     activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
     await bot.change_presence(activity=activity)
 
+    # Automatically assign roles to members who already exist in the server
+    for guild in bot.guilds:
+        await assign_roles_to_existing_members(guild)
+
+async def assign_roles_to_existing_members(guild):
+    bot_member = guild.get_member(bot.user.id)
+
+    if bot_member.guild_permissions.manage_roles:
+        for member in guild.members:
+            # Skip members who already have the correct role
+            if member.bot:
+                role_name = "Frenchies"  # Role to assign to bots
+            else:
+                role_name = "Members"  # Role to assign to human members
+
+            role = discord.utils.get(guild.roles, name=role_name)
+
+            if role and role not in member.roles:
+                try:
+                    await member.add_roles(role)
+                    print(f"Assigned {role_name} role to {member.name}")
+                except discord.Forbidden:
+                    print(f"Failed to assign role to {member.name}. Check bot permissions.")
+                except discord.HTTPException as error:
+                    print(f"HTTP Exception: {error}")
+    else:
+        print("Bot does not have permission to manage roles.")
+
 @bot.event
 async def on_member_join(member):
-    # The role name to assign (must match the exact name in your server)
-    role_name = "Members"  # This is the role you want to assign to all new members
-
-    # Find the role in the guild by name
+    # Ensure the bot has the required permission to manage roles
     guild = member.guild
-    role = discord.utils.get(guild.roles, name=role_name)
+    bot_member = guild.get_member(bot.user.id)
 
-    if role:
-        try:
-            # Assign the role to the new member
-            await member.add_roles(role)
-            print(f"Assigned {role_name} role to {member.name}")
-        except discord.Forbidden:
-            print(f"Failed to assign role to {member.name}. Check bot permissions.")
-        except discord.HTTPException as error:
-            print(f"HTTP Exception: {error}")
+    if bot_member.guild_permissions.manage_roles:
+        # Check if the new member is a bot or a human
+        if member.bot:
+            role_name = "Set_Bot_Role"  # Role to assign to bots
+        else:
+            role_name = "Set_Human_Role"  # Role to assign to human members
+
+        role = discord.utils.get(guild.roles, name=role_name)
+
+        if role:
+            try:
+                await member.add_roles(role)
+                print(f"Assigned {role_name} role to {member.name}")
+            except discord.Forbidden:
+                print(f"Failed to assign role to {member.name}. Check bot permissions.")
+            except discord.HTTPException as error:
+                print(f"HTTP Exception: {error}")
+        else:
+            print(f"Role '{role_name}' not found in the server.")
     else:
-        print(f"Role '{role_name}' not found in the server.")
-
-# Respond when someone with the Members role mentions the bot (@Chomper)
-@bot.event
-async def on_message(message):
-    # Make sure the bot doesn't respond to its own messages
-    if message.author == bot.user:
-        return
-
-    # Check if the bot is mentioned and if the author has the Members role
-    if bot.user in message.mentions:
-        # Find the "Members" role in the guild
-        members_role = discord.utils.get(message.guild.roles, name="Members")
-
-        # Check if the author has the "Members" role
-        if members_role in message.author.roles:
-            await message.channel.send("Bark bark, stupid. I'm a fucking bot.")
-
-    # Process commands as well
-    await bot.process_commands(message)
+        print("Bot does not have permission to manage roles.")
 
 @bot.command(name='ping')
 async def ping(ctx):

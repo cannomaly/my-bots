@@ -31,9 +31,9 @@ async def assign_roles_to_existing_members(guild):
         for member in guild.members:
             # Skip members who already have the correct role
             if member.bot:
-                role_name = "Frenchies"  # Role to assign to bots
+                role_name = "Set_Bots_Role"  # Role to assign to bots
             else:
-                role_name = "Members"  # Role to assign to human members
+                role_name = "Set_Members_Role"  # Role to assign to human members
 
             role = discord.utils.get(guild.roles, name=role_name)
 
@@ -59,7 +59,7 @@ async def on_member_join(member):
         if member.bot:
             role_name = "Set_Bot_Role"  # Role to assign to bots
         else:
-            role_name = "Set_Human_Role"  # Role to assign to human members
+            role_name = "Set_Membrers_Role"  # Role to assign to human members
 
         role = discord.utils.get(guild.roles, name=role_name)
 

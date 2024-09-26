@@ -16,27 +16,21 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
 
-    # Set the bot's activity to "Watching"
+    # Set the bot's activity"
     activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
     await bot.change_presence(activity=activity)
 
-# Respond when someone with the Members role mentions the bot (@Chomper)
 @bot.event
 async def on_message(message):
-    # Make sure the bot doesn't respond to its own messages
     if message.author == bot.user:
         return
 
-    # Check if the bot is mentioned and if the author has the Members role
     if bot.user in message.mentions:
-        # Find the "Members" role in the guild
-        members_role = discord.utils.get(message.guild.roles, name="Members")
+        members_role = discord.utils.get(message.guild.roles, name="SET_YOUR_MEMBERS_CHANNERL")
 
-        # Check if the author has the "Members" role
         if members_role in message.author.roles:
             await message.channel.send("You're trying to talk to a bot, go touch grass.")
 
-    # Process commands as well
     await bot.process_commands(message)
 
 @bot.command(name='ping')

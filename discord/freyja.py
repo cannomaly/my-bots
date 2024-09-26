@@ -1,12 +1,14 @@
 import discord
 from discord.ext import commands
 import openai
+import time
+import asyncio
 
 # Set your OpenAI API key here
-openai.api_key = 'YOUR_OPENAI_KEY'  # Make sure this is correctly set
+openai.api_key = 'Your_OpenAI_API_Key'
 
 # Directly set your Discord token
-DISCORD_TOKEN = 'YOUR_TOKEN_HERE'
+DISCORD_TOKEN = 'YOUR_BOT_TOKEN'
 
 # Set up intents (required for Discord bot)
 intents = discord.Intents.default()
@@ -15,11 +17,16 @@ intents.message_content = True
 # Create a bot instance with '.' as the command prefix
 bot = commands.Bot(command_prefix='.', intents=intents)
 
+# Function to handle rate-limiting (retry after waiting)
+async def handle_rate_limiting(retry_after):
+    print(f"Rate limit hit. Retrying in {retry_after:.2f} seconds...")
+    await asyncio.sleep(retry_after)
+
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
-    # Set the bot's activity to "Watching"
+    # Set the bot's activity"
     activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
     await bot.change_presence(activity=activity)
 
@@ -44,20 +51,27 @@ async def on_message(message):
             return
         try:
             # Use ChatCompletion for the correct model (gpt-4o as you specified)
-            response = openai.ChatCompletion.create(
-                model="gpt-4o",  # Your tested model
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": user_message}
-                ],
-                max_tokens=3000  # Adjusted max token limit to avoid error
-            )
+            while True:
+                try:
+                    response = openai.ChatCompletion.create(
+                        model="gpt-4",  # Your tested model
+                        messages=[
+                            {"role": "system", "content": "You are a helpful assistant."},
+                            {"role": "user", "content": user_message}
+                        ],
+                        max_tokens=3000  # Reduce max token limit to avoid reaching rate limits
+                    )
 
-            # Extract the response text
-            response_text = response['choices'][0]['message']['content'].strip()
+                    # Extract the response text
+                    response_text = response['choices'][0]['message']['content'].strip()
 
-            # Send the AI's response to the #ai channel
-            await ai_channel.send(response_text)
+                    # Send the AI's response to the #ai channel
+                    await ai_channel.send(response_text)
+                    break  # Exit loop on success
+
+                except openai.error.RateLimitError as e:
+                    retry_after = float(e.headers.get('Retry-After', 1))  # Get suggested retry time
+                    await handle_rate_limiting(retry_after)
 
         except Exception as e:
             await ai_channel.send(f"Error: {str(e)}")
@@ -66,7 +80,7 @@ async def on_message(message):
     elif message.content.startswith('.id_model'):
         try:
             response = openai.ChatCompletion.create(
-                model="gpt-4o",  # Your tested model
+                model="gpt-4",  # Your tested model
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": "Can you tell me which model you are?"}

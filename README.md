@@ -135,31 +135,31 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-3. Reload systemd
+**3. Reload systemd**
 Once the service file is created, reload systemd to make the service available.
 ```bash
 sudo systemctl daemon-reload
 ```
 
-4. Start the Bot Service
+**4. Start the Bot Service**
 Start the bot service with the following command:
 ```bash
 sudo systemctl start <bot-name>.service
 ```
 
-5. Enable the Bot Service to Start on Boot
+**5. Enable the Bot Service to Start on Boot**
 To ensure the bot starts automatically after a reboot, enable the service:
 ```bash
 sudo systemctl enable <bot-name>.service
 ```
 
-6. Check the Status of the Service
+**6. Check the Status of the Service**
 You can check the status of the bot service to ensure it's running correctly:
 ```bash
 sudo systemctl status <bot-name>.service
 ```
 
-7. Stopping the Service
+**7. Stopping the Service**
 To stop the bot service, use the following command:
 ```bash
 sudo systemctl stop <bot-name>.service

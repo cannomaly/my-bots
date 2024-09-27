@@ -35,7 +35,7 @@ A powerful and feature-rich Discord bot tailored for server administrators to ma
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+**1. Clone the Repository**
 You will need to clone the bots repository and then change to the to the cloned repository so you can make the changes needed.
 - clone the bot's repository:`git clone https://github.com/cannomaly/my-bots.git`
 - Change to the cloned repo `cd announcement-bot`

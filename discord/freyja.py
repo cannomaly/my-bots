@@ -85,7 +85,8 @@ async def on_message(message):
                                 {"role": "system", "content": "You are a helpful assistant."},
                                 {"role": "user", "content": user_message}
                             ],
-                            max_tokens=1500  # Set max tokens for the response
+                            max_tokens=750,  # Adjusted to 750 tokens for real-time response
+                            temperature=0.7  # Balance creativity and relevance
                         )
 
                         # Extract the response text
@@ -140,7 +141,8 @@ async def on_message(message):
                             {"role": "system", "content": "You are a helpful assistant."},
                             {"role": "user", "content": user_message}
                         ],
-                        max_tokens=1500  # Set max tokens for the response
+                        max_tokens=750,  # Adjusted to 750 tokens for real-time response
+                        temperature=0.7  # Balance creativity and relevance
                     )
 
                     # Extract the response text

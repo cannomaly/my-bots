@@ -41,47 +41,47 @@ You will need to clone the bots repository and then change to the to the cloned 
 - Change to the cloned repo `cd announcement-bot`
 - Run the command: `ls` or `ls -lh` to get a list of my discord bots.
 
-### 2. Install Dependencies
+**2. Install Dependencies**
 Make sure Python 3.8+ is installed. Set up a Python virtual environment and install the required dependencies by running the following commands:
 - Create a virtual environment: `python3 -m venv venv`
 - Activate the virtual environment: `source venv/bin/activate` or `.\venv/bin/activate.fish` for fish shell.
 - Install dependencies: `pip install discord.py python-dotenv`
 
-### 3. Set Up Environment Variables
+**3. Set Up Environment Variables**
 Create a `.env` file in the root directory of the project.
 - Add your bot token to the file like so: `DISCORD_TOKEN_ZEZE=your_bot_token_here`
 
-### 4. Set the Announcement Channel
+**4. Set the Announcement Channel**
 - In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable.
 - Add you announcement channel ID like so: `ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594`
 
-### 5. Running the Bot
+**5. Running the Bot**
 After setting up everything, you can run the bot with the following command:
 - Activate your virtual environment (if not already active): `source venv/bin/activate`
 - Run the bot: `python bot.py`
 
 ## Bot Commands
 
-### 1. !announce message
+**1. !announce message**
 - Description: Send an immediate announcement to the designated channel.
 - Example: `!announce Server will be down for maintenance.`
 
-### 2. !schedule_announce HH:MM message
+**2. !schedule_announce HH:MM message**
 - Description: Schedule an announcement to be sent at a specific time (24-hour format).
 - Example: `!schedule_announce 09:00 Daily server check.`
 
-### 3. !urgent_announce message
+**3. !urgent_announce message**
 - Description: Send an urgent announcement to the channel, marked with priority formatting.
 - Example: `!urgent_announce Security alert! Server breach detected.`
 
-### 4. !view_log
+**4. !view_log**
 - Description: View the log of all past announcements, including timestamps and authors.
 
-### 5. !view_schedule
+**5. !view_schedule**
 - Description: View all upcoming scheduled announcements.
 
-### 6. !help
+**6. !help**
 - Description: Display a list of all available commands for administrators.
 
-## Permissions
+**Permissions**
 All commands require the administrator permission to execute, ensuring only trusted users can make announcements.

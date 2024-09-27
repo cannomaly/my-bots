@@ -105,7 +105,9 @@ Make sure Python 3.8+ is installed. Set up a Python virtual environment and inst
 - Install dependencies: `pip install discord.py python-dotenv openai`
 
 **3. Set Up Environment Variables**  
-Create a `.env` file in the root directory of the project.
+Create a `.env` file the root directory of the project or edit the one included in my repo.
+- Run `ls -lha` to see hidden files as .env is a hidden file.
+- Edit the .env file like so: `vim .env` or `nano .env`
 - Add your bot token to the file like so: `DISCORD_TOKEN_<BOT_NAME>=your_bot_token_here`
 
 **4. Running the Bot**  

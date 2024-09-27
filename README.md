@@ -36,9 +36,8 @@ A powerful and feature-rich Discord bot tailored for server administrators to ma
 ## Setup Instructions
 
  1. Clone the Repository
-Download the bot's repository to your local machine using the following command:
-`git clone https://github.com/cannomaly/announcement-bot.git`
-cd announcement-bot
+ - clone the bot's repository:`git clone https://github.com/cannomaly/announcement-bot.git`
+ - Change to the cloned repo `cd announcement-bot`
 
 ### 2. Install Dependencies
 Make sure Python 3.8+ is installed. Set up a Python virtual environment and install the required dependencies by running the following commands:

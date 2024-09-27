@@ -61,9 +61,9 @@
 - **.id_model**:  
   Queries the current OpenAI model in use and responds in the user’s DM.
 
-## 4. ZeZe - Personal Announcement Discord Bot
+## 4. ZeZe - Announcement Discord Bot
 
-*ZeZe is my personal Discord bot. It's also the name of my middle son's French bulldog.*
+*ZeZe is an announcement discord bot.*
 
 A powerful and feature-rich Discord bot tailored for server administrators to manage and send announcements in a streamlined and organized way. It includes features for scheduling announcements, urgent notifications, and logging past messages.
 

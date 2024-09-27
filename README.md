@@ -69,7 +69,7 @@ After setting up everything, you can run the bot with the following command:
 
 ### Bot Commands
 
-# 1. `!announce message`
+1. `!announce message`
 - Description**: Send an immediate announcement to the designated channel.
 - Example**: `!announce Server will be down for maintenance.`
 

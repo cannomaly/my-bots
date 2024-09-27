@@ -1,10 +1,73 @@
-# ZeZe - Personal Announcement Discord Bot
+# Discord Bots Collection
+
+*This repository contains multiple personal Discord bots, each with a unique set of features for server administration and automation.*
+
+## 1. Chewie - Automatic Role Assignment Bot
+
+*Chewie is a Discord bot that automatically assigns roles to users and bots upon joining the server.*
+
+### Features (Chewie)
+
+- **Automatic Role Assignment**:  
+  Chewie assigns a "Members" role to human members and a "Frenchies" role to bots upon joining the server.
+  
+- **Existing Member Role Assignment**:  
+  When the bot starts, it checks all existing members in the server and assigns them the correct roles based on whether they are bots or humans.
+
+- **Manage Role Permissions**:  
+  The bot checks for permission to manage roles, ensuring it can assign roles properly to members.
+
+### Commands (Chewie)
+
+- No user-facing commands; the bot operates automatically upon server events.
+
+## 2. Chomper - AI-Powered Discord Bot
+
+*Chomper integrates with the OpenAI API to provide AI-generated responses through DMs.*
+
+### Features (Chomper)
+
+- **AI-Generated Responses**:  
+  Chomper listens to specific keywords in server channels and provides AI-generated responses in DMs using OpenAI's GPT models.
+
+- **Rate Limit Handling**:  
+  If the OpenAI API rate limit is hit, Chomper waits and retries, ensuring smooth interaction with the API.
+
+- **Model Identification**:  
+  The bot can identify which OpenAI model it is using with the `.id_model` command.
+
+### Commands (Chomper)
+
+- **.id_model**:  
+  Sends a DM to the user with the model currently in use by the bot.
+
+## 3. Freyja - Rate-Limit Handling and Model Information Bot
+
+*Freyja is designed to handle rate-limited API requests and manage model-related interactions for OpenAI.*
+
+### Features (Freyja)
+
+- **Rate-Limit Retry**:  
+  If an API request exceeds the rate limit, Freyja manages the retries based on the provided retry-after time.
+  
+- **Model Query Command**:  
+  Freyja can respond with the OpenAI model in use when asked with the `.id_model` command.
+
+- **Error Handling**:  
+  Freyja handles errors and sends relevant information back to users via DM.
+
+### Commands (Freyja)
+
+- **.id_model**:  
+  Queries the current OpenAI model in use and responds in the user’s DM.
+
+## 4. ZeZe - Personal Announcement Discord Bot
 
 *ZeZe is my personal Discord bot. It's also the name of my middle son's French bulldog.*
 
 A powerful and feature-rich Discord bot tailored for server administrators to manage and send announcements in a streamlined and organized way. It includes features for scheduling announcements, urgent notifications, and logging past messages.
 
-## Features
+### Features (ZeZe)
 
 - **Scheduled Announcements**:  
   Use the `!schedule_announce HH:MM message` command to schedule an announcement for a specific time (24-hour format).  
@@ -27,61 +90,35 @@ A powerful and feature-rich Discord bot tailored for server administrators to ma
 - **Help Command**:  
   Admins can use the `!help` command to get a list of all available commands and their descriptions.
 
-- **Channel-Specific Announcements**:  
-  All announcements are sent to a predefined announcement channel (set by `ANNOUNCEMENT_CHANNEL_ID` in the code).
+### Setup Instructions
 
-- **Backup and Restore**:  
-  The bot keeps a log of all announcements that can act as a simple backup of past messages.
-
-## Setup Instructions
-
-**1. Clone the Repository**
-You will need to clone the bots repository and then change to the to the cloned repository so you can make the changes needed.
-- clone the bot's repository:`git clone https://github.com/cannomaly/my-bots.git`
-- Change to the cloned repo `cd announcement-bot`
+**1. Clone the Repository**  
+You will need to clone the bots repository and then change to the cloned repository so you can make the changes needed.
+- Clone the bot's repository: `git clone https://github.com/cannomaly/my-bots.git`
+- Change to the cloned repo `cd <bot-directory>`
 - Run the command: `ls` or `ls -lh` to get a list of my discord bots.
 
-**2. Install Dependencies**
+**2. Install Dependencies**  
 Make sure Python 3.8+ is installed. Set up a Python virtual environment and install the required dependencies by running the following commands:
 - Create a virtual environment: `python3 -m venv venv`
 - Activate the virtual environment: `source venv/bin/activate` or `.\venv/bin/activate.fish` for fish shell.
-- Install dependencies: `pip install discord.py python-dotenv`
+- Install dependencies: `pip install discord.py python-dotenv openai`
 
-**3. Set Up Environment Variables**
+**3. Set Up Environment Variables**  
 Create a `.env` file in the root directory of the project.
-- Add your bot token to the file like so: `DISCORD_TOKEN_ZEZE=your_bot_token_here`
+- Add your bot token to the file like so: `DISCORD_TOKEN_<BOT_NAME>=your_bot_token_here`
 
-**4. Set the Announcement Channel**
-- In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable.
-- Add you announcement channel ID like so: `ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594`
-
-**5. Running the Bot**
+**4. Running the Bot**  
 After setting up everything, you can run the bot with the following command:
 - Activate your virtual environment (if not already active): `source venv/bin/activate`
-- Run the bot: `python bot.py`
+- Run the bot: `python <bot-file>.py`
 
-## Bot Commands
+### Bot-Specific Setup Notes:
 
-**1. !announce message**
-- Description: Send an immediate announcement to the designated channel.
-- Example: `!announce Server will be down for maintenance.`
+- **ZeZe**: Requires a channel ID for announcements. Update the `ANNOUNCEMENT_CHANNEL_ID` in the script.
+- **Chewie**: Requires proper role permissions for managing roles.
+- **Chomper and Freyja**: Require OpenAI API keys in the environment variables for interacting with the OpenAI API.
 
-**2. !schedule_announce HH:MM message**
-- Description: Schedule an announcement to be sent at a specific time (24-hour format).
-- Example: `!schedule_announce 09:00 Daily server check.`
+## Permissions
 
-**3. !urgent_announce message**
-- Description: Send an urgent announcement to the channel, marked with priority formatting.
-- Example: `!urgent_announce Security alert! Server breach detected.`
-
-**4. !view_log**
-- Description: View the log of all past announcements, including timestamps and authors.
-
-**5. !view_schedule**
-- Description: View all upcoming scheduled announcements.
-
-**6. !help**
-- Description: Display a list of all available commands for administrators.
-
-**Permissions**
-All commands require the administrator permission to execute, ensuring only trusted users can make announcements.
+All commands across the bots require administrator permissions to ensure only trusted users can execute critical actions.

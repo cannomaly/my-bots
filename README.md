@@ -69,23 +69,23 @@ After setting up everything, you can run the bot with the following command:
 
 ## Bot Commands
 
-### 1. `!announce message`
-- **Description**: Send an immediate announcement to the designated channel.
-- **Example**: `!announce Server will be down for maintenance.`
+# 1. `!announce message`
+- *Description**: Send an immediate announcement to the designated channel.
+- *Example**: `!announce Server will be down for maintenance.`
 
-### 2. `!schedule_announce HH:MM message`
-- **Description**: Schedule an announcement to be sent at a specific time (24-hour format).
-- **Example**: `!schedule_announce 09:00 Daily server check.`
+# 2. `!schedule_announce HH:MM message`
+- *Description**: Schedule an announcement to be sent at a specific time (24-hour format).
+- *Example**: `!schedule_announce 09:00 Daily server check.`
 
-### 3. `!urgent_announce message`
-- **Description**: Send an urgent announcement to the channel, marked with priority formatting.
-- **Example**: `!urgent_announce Security alert! Server breach detected.`
+# 3. `!urgent_announce message`
+- *Description**: Send an urgent announcement to the channel, marked with priority formatting.
+- *Example**: `!urgent_announce Security alert! Server breach detected.`
 
-### 4. `!view_log`
-- **Description**: View the log of all past announcements, including timestamps and authors.
+# 4. `!view_log`
+- *Description**: View the log of all past announcements, including timestamps and authors.
 
-### 5. `!view_schedule`
-- **Description**: View all upcoming scheduled announcements.
+# 5. `!view_schedule`
+- *Description**: View all upcoming scheduled announcements.
 
 ## Permissions
 All commands require the administrator permission to execute, ensuring only trusted users can make announcements.

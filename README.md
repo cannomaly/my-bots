@@ -7,7 +7,6 @@
 *Chewie is a Discord bot that automatically assigns roles to users and bots upon joining the server.*
 
 ### Features
-
 - **Automatic Role Assignment**:  
   Chewie assigns a "Members" role to human members and a "Frenchies" role to bots upon joining the server.
   
@@ -18,7 +17,6 @@
   The bot checks for permission to manage roles, ensuring it can assign roles properly to members.
 
 ### Commands
-
 - No user-facing commands; the bot operates automatically upon server events.
 
 ## 2. Chomper - AI-Powered Discord Bot (Under Development)
@@ -26,7 +24,6 @@
 *Chomper integrates with the OpenAI API to provide AI-generated responses through DMs. Note: This bot is still under development.*
 
 ### Features
-
 - **AI-Generated Responses**:  
   Chomper listens to specific keywords in server channels and provides AI-generated responses in DMs using OpenAI's GPT models.
 
@@ -37,7 +34,6 @@
   The bot can identify which OpenAI model it is using with the `.id_model` command.
 
 ### Commands
-
 - **.id_model**:  
   Sends a DM to the user with the model currently in use by the bot.
 
@@ -46,7 +42,6 @@
 *Freyja is an OpenAI Discord bot designed to handle rate-limited API requests and manage model-related interactions for OpenAI.*
 
 ### Features
-
 - **Rate-Limit Retry**:  
   If an API request exceeds the rate limit, Freyja manages the retries based on the provided retry-after time.
   
@@ -57,7 +52,6 @@
   Freyja handles errors and sends relevant information back to users via DM.
 
 ### Commands
-
 - **.id_model**:  
   Queries the current OpenAI model in use and responds in the user’s DM.
 
@@ -68,7 +62,6 @@
 A powerful and feature-rich Discord bot tailored for server administrators to manage and send announcements in a streamlined and organized way. It includes features for scheduling announcements, urgent notifications, and logging past messages.
 
 ### Features
-
 - **Scheduled Announcements**:  
   Use the `!schedule_announce HH:MM message` command to schedule an announcement for a specific time (24-hour format).  
   Example: `!schedule_announce 14:30 Server maintenance will start soon!` will schedule a message at 14:30.

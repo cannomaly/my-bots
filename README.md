@@ -5,6 +5,7 @@
 A powerful and feature-rich Discord bot tailored for server administrators to manage and send announcements in a streamlined and organized way. It includes features for scheduling announcements, urgent notifications, and logging past messages.
 
 ## Features
+
 - **Scheduled Announcements**:  
   Use the `!schedule_announce HH:MM message` command to schedule an announcement for a specific time (24-hour format).  
   Example: `!schedule_announce 14:30 Server maintenance will start soon!` will schedule a message at 14:30.
@@ -22,6 +23,9 @@ A powerful and feature-rich Discord bot tailored for server administrators to ma
 
 - **View Scheduled Announcements**:  
   Admins can use the `!view_schedule` command to view all upcoming scheduled announcements.
+
+- **Help Command**:  
+  Admins can use the `!help` command to get a list of all available commands and their descriptions.
 
 - **Channel-Specific Announcements**:  
   All announcements are sent to a predefined announcement channel (set by `ANNOUNCEMENT_CHANNEL_ID` in the code).
@@ -60,28 +64,31 @@ ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594 # Replace this with your channel's
 ### 5. Running the Bot
 
 After setting up everything, you can run the bot with the following command:
-- Activate your virtual environment (if not already active): `source venv/bin/activate or `source venv/bin/activate.fish` for fish shell
+- Activate your virtual environment (if not already active): `source venv/bin/activate`
 - Run the bot: `python bot.py`
 
-### Bot Commands
+## Bot Commands
 
-1. `!announce message`
-- Description**: Send an immediate announcement to the designated channel.
-- Example**: `!announce Server will be down for maintenance.`
+### 1. !announce message
+- **Description**: Send an immediate announcement to the designated channel.
+- **Example**: `!announce Server will be down for maintenance.`
 
-2. `!schedule_announce HH:MM message`
-- Description**: Schedule an announcement to be sent at a specific time (24-hour format).
-- Example**: `!schedule_announce 09:00 Daily server check.`
+### 2. !schedule_announce HH:MM message
+- **Description**: Schedule an announcement to be sent at a specific time (24-hour format).
+- **Example**: `!schedule_announce 09:00 Daily server check.`
 
-3. `!urgent_announce message`
-- Description**: Send an urgent announcement to the channel, marked with priority formatting.
-- Example**: `!urgent_announce Security alert! Server breach detected.`
+### 3. !urgent_announce message
+- **Description**: Send an urgent announcement to the channel, marked with priority formatting.
+- **Example**: `!urgent_announce Security alert! Server breach detected.`
 
-4. `!view_log`
-- Description**: View the log of all past announcements, including timestamps and authors.
+### 4. !view_log
+- **Description**: View the log of all past announcements, including timestamps and authors.
 
-5. `!view_schedule`
-- Description**: View all upcoming scheduled announcements.
+### 5. !view_schedule
+- **Description**: View all upcoming scheduled announcements.
+
+### 6. !help
+- **Description**: Display a list of all available commands for administrators.
 
 ## Permissions
 All commands require the administrator permission to execute, ensuring only trusted users can make announcements.

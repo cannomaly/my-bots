@@ -19,7 +19,7 @@
 ### Commands
 - No user-facing commands; the bot operates automatically upon server events.
 
-## 2. Chomper - YouTube Video Announcement Bot (In Development)
+## 2. Chomper - YouTube Video Announcement Bot
 
 *Chomper automatically posts announcements when new videos are uploaded to specific YouTube channels.*
 

@@ -121,7 +121,7 @@ You can run each bot as a background service using systemd. Follow these steps t
 **1. Create a systemd Service File**
 For each bot, create a service file under `/etc/systemd/system/`. Replace `<bot-name>` with the appropriate bot name (e.g., `zeze`, `chewie`, `chomper`, or `freyja`).
 
-``` bash sudo nano /etc/systemd/system/<bot-name>.service ```
+```bash sudo nano /etc/systemd/system/<bot-name>.service ```
 
 **2. Add the Following Configuration to the Service File**
 ```bash

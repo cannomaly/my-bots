@@ -5,7 +5,6 @@
 A powerful and feature-rich Discord bot tailored for server administrators to manage and send announcements in a streamlined and organized way. It includes features for scheduling announcements, urgent notifications, and logging past messages.
 
 ## Features
-
 - **Scheduled Announcements**:  
   Use the `!schedule_announce HH:MM message` command to schedule an announcement for a specific time (24-hour format).  
   Example: `!schedule_announce 14:30 Server maintenance will start soon!` will schedule a message at 14:30.
@@ -33,7 +32,6 @@ A powerful and feature-rich Discord bot tailored for server administrators to ma
 ## Setup Instructions
 
 ### 1. Clone the Repository
-
 Download the bot's repository to your local machine using the following command:
 ```bash
 git clone https://github.com/cannomaly/announcement-bot.git
@@ -41,23 +39,20 @@ cd announcement-bot
 ```
 
 ### 2. Install Dependencies
-
 Make sure Python 3.8+ is installed. Set up a Python virtual environment and install the required dependencies by running the following commands:
 - Create a virtual environment: `python3 -m venv venv`
 - Activate the virtual environment: `source venv/bin/activate` (for Linux/macOS) or `.\venv\Scripts\activate` (for Windows)
 - Install dependencies: `pip install -r requirements.txt`
 
 ### 3. Set Up Environment Variables
-
 Create a `.env` file in the root directory of the project. Add your bot token to the file like so:
 ```bash
 DISCORD_TOKEN_ZEZE=your_bot_token_here
 ```
 
 ### 4. Set the Announcement Channel
-
-In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable.
-Replace the value with your Discord server's announcement channel ID:
+- In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable.
+- Replace the value with your Discord server's announcement channel ID:
 ```bash
 ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594 # Replace this with your channel's ID
 ```

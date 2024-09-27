@@ -44,24 +44,18 @@ You will need to clone the bots repository and then change to the to the cloned 
 ### 2. Install Dependencies
 Make sure Python 3.8+ is installed. Set up a Python virtual environment and install the required dependencies by running the following commands:
 - Create a virtual environment: `python3 -m venv venv`
-- Activate the virtual environment: `source venv/bin/activate` (for Linux/macOS) or `.\venv\Scripts\activate` (for Windows)
-- Install dependencies: `pip install -r requirements.txt`
+- Activate the virtual environment: `source venv/bin/activate` or `.\venv/bin/activate.fish` for fish shell.
+- Install dependencies: `pip install discord.py python-dotenv`
 
 ### 3. Set Up Environment Variables
-Create a `.env` file in the root directory of the project. Add your bot token to the file like so:
-```bash
-DISCORD_TOKEN_ZEZE=your_bot_token_here
-```
+Create a `.env` file in the root directory of the project.
+- Add your bot token to the file like so: `DISCORD_TOKEN_ZEZE=your_bot_token_here`
 
 ### 4. Set the Announcement Channel
 - In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable.
-- Replace the value with your Discord server's announcement channel ID:
-```bash
-ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594 # Replace this with your channel's ID
-```
+- Add you announcement channel ID like so: `ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594`
 
 ### 5. Running the Bot
-
 After setting up everything, you can run the bot with the following command:
 - Activate your virtual environment (if not already active): `source venv/bin/activate`
 - Run the bot: `python bot.py`

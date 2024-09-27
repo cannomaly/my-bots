@@ -1,4 +1,3 @@
-from googleapiclient.discovery import build
 from dotenv import load_dotenv
 import os
 import discord
@@ -12,15 +11,11 @@ logging.basicConfig(level=logging.DEBUG)
 # Load environment variables
 load_dotenv()
 
-# Bot token and YouTube API Key from the environment file
+# Bot token for ZeZe from the environment file
 TOKEN = os.getenv("DISCORD_TOKEN_ZEZE")
-YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
-if TOKEN is None or YOUTUBE_API_KEY is None:
-    raise ValueError("Required environment variables are not set.")
-
-# YouTube API client
-youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
+if TOKEN is None:
+    raise ValueError("DISCORD_TOKEN_ZEZE is not set in the environment.")
 
 # Set up intents
 intents = discord.Intents.default()
@@ -33,11 +28,6 @@ bot = commands.Bot(command_prefix='#', intents=intents)
 # Channel ID for the #announcement channel
 ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594
 
-# Store tracked YouTube channels (Now directly using your channel ID)
-tracked_channels = {
-    'UCQMPP0PYhvDjn_Lq6vzM7UA': None  # Chomper The Frenchie's channel ID
-}
-
 # In-memory store for scheduled announcements
 scheduled_announcements = []
 
@@ -49,36 +39,7 @@ async def on_ready():
     print(f'{bot.user} has connected to Discord!')
     activity = discord.Activity(type=discord.ActivityType.watching, name="over the server")
     await bot.change_presence(activity=activity)
-    check_new_videos.start()  # Start the task to check for new videos
     announcement_scheduler.start()  # Start the scheduled announcement task
-
-# Function to fetch the latest video from a YouTube channel
-async def fetch_latest_video(channel_id):
-    request = youtube.activities().list(
-        part="snippet,contentDetails",
-        channelId=channel_id,
-        maxResults=1
-    )
-    response = request.execute()
-
-    if "items" in response:
-        latest_video = response['items'][0]
-        video_id = latest_video['contentDetails']['upload']['videoId']
-        video_title = latest_video['snippet']['title']
-        video_url = f"https://www.youtube.com/watch?v={video_id}"
-        return video_id, video_title, video_url
-    return None, None, None
-
-# Task to check for new video uploads
-@tasks.loop(minutes=5)
-async def check_new_videos():
-    for channel_id, last_video_id in tracked_channels.items():
-        video_id, video_title, video_url = await fetch_latest_video(channel_id)
-        if video_id and video_id != last_video_id:
-            channel = bot.get_channel(ANNOUNCEMENT_CHANNEL_ID)
-            message = f"📢 **New video uploaded:** {video_title}\nWatch here: {video_url}"
-            await channel.send(message)
-            tracked_channels[channel_id] = video_id
 
 # Simple ping command to check if the bot is running
 @bot.command(name='ping')
@@ -96,6 +57,7 @@ async def help_command(ctx):
         "\n**#ping** - Check if the bot is responsive."
         "\n**#announce message** - Send an immediate announcement."
         "\n**#schedule_announce HH:MM message** - Schedule an announcement at a specific time (24-hour format)."
+        "\n**#urgent_announce message** - Send an urgent announcement with priority formatting."
         "\n**#view_log** - View the log of past announcements."
         "\n**#view_schedule** - View all upcoming scheduled announcements."
         "\n**#bot_help** - Display this help message."
@@ -114,6 +76,21 @@ async def announce(ctx, *, message: str):
         await channel.send(embed=embed)
         log_announcement(message, ctx.author)
         await ctx.send(f'Announcement sent to {channel.mention}')
+    else:
+        await ctx.send('Announcement channel not found.')
+
+# Command for urgent announcements
+@bot.command(name='urgent_announce')
+@commands.has_permissions(administrator=True)
+async def urgent_announce(ctx, *, message: str):
+    """Send an urgent announcement with priority formatting."""
+    channel = bot.get_channel(ANNOUNCEMENT_CHANNEL_ID)
+    if channel:
+        embed = discord.Embed(title="🚨 URGENT ANNOUNCEMENT 🚨", description=message, color=discord.Color.red())
+        embed.set_footer(text=f"Sent by {ctx.author}")
+        await channel.send(embed=embed)
+        log_announcement(message, ctx.author)
+        await ctx.send(f'Urgent announcement sent to {channel.mention}')
     else:
         await ctx.send('Announcement channel not found.')
 
@@ -160,7 +137,7 @@ async def view_schedule(ctx):
         embed = discord.Embed(title="Scheduled Announcements", description=description, color=discord.Color.orange())
         await ctx.send(embed=embed)
 
-# Log announcements (Feature #10)
+# Log announcements
 def log_announcement(message, author):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     announcement_logs.append({"message": message, "author": str(author), "timestamp": timestamp})

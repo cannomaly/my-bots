@@ -56,7 +56,8 @@ DISCORD_TOKEN_ZEZE=your_bot_token_here
 
 ### 4. Set the Announcement Channel
 
-In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable. Replace the value with your Discord server's announcement channel ID:
+In the bot's code, locate the `ANNOUNCEMENT_CHANNEL_ID` variable.
+Replace the value with your Discord server's announcement channel ID:
 ```bash
 ANNOUNCEMENT_CHANNEL_ID = 1288274033154199594 # Replace this with your channel's ID
 ```

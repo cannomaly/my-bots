@@ -19,23 +19,22 @@
 ### Commands
 - No user-facing commands; the bot operates automatically upon server events.
 
-## 2. Chomper - AI-Powered Discord Bot (Under Development)
+## 2. Chomper - YouTube Video Announcement Bot (Under Development)
 
-*Chomper integrates with the OpenAI API to provide AI-generated responses through DMs. Note: This bot is still under development.*
+*Chomper automatically posts announcements when new videos are uploaded to specific YouTube channels. Note: This bot is still under development.*
 
 ### Features
-- **AI-Generated Responses**:  
-  Chomper listens to specific keywords in server channels and provides AI-generated responses in DMs using OpenAI's GPT models.
+- **Auto Video Announcement**:  
+  Chomper monitors specified YouTube channels and posts an announcement to a designated Discord channel whenever a new video is uploaded.
 
-- **Rate Limit Handling**:  
-  If the OpenAI API rate limit is hit, Chomper waits and retries, ensuring smooth interaction with the API.
+- **Configurable YouTube Channels**:  
+  Admins can set specific YouTube channels for Chomper to track for new video uploads.
 
-- **Model Identification**:  
-  The bot can identify which OpenAI model it is using with the `.id_model` command.
+- **Customizable Announcement Message**:  
+  The bot posts a custom message to notify members of new videos.
 
 ### Commands
-- **.id_model**:  
-  Sends a DM to the user with the model currently in use by the bot.
+- No user-facing commands; the bot operates automatically upon detecting new videos.
 
 ## 3. Freyja - OpenAI Discord Bot
 

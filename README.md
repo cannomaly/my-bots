@@ -181,10 +181,14 @@ sudo systemctl stop <bot-name>.service
 
 ### Bot-Specific Setup Notes:
 
-- **ZeZe**: Requires a channel ID for announcements. Update the `ANNOUNCEMENT_CHANNEL_ID` in the script.
-- **Chewie**: Requires proper role permissions for managing roles.
-- **Chomper and Freyja**: Require OpenAI API keys in the environment variables for interacting with the OpenAI API.
+- **Chewie**: Requires proper role permissions for managing roles. Ensure the bot has the necessary permissions to assign roles to both new members and bots.
+
+- **Chomper**: Requires a YouTube API key for tracking channels and posting announcements. Add the `YOUTUBE_API_KEY` to the environment variables in the `.env` file. All video announcements will be posted to the `#announcements` channel.
+
+- **Freyja**: Requires an OpenAI API key to handle API requests and model interactions. Add the `OPENAI_API_KEY` to the environment variables in the `.env` file for it to function properly.
+
+- **ZeZe**: Requires a channel ID for announcements. Update the `ANNOUNCEMENT_CHANNEL_ID` in the script to the ID of the channel where you want announcements to be posted.
+nt variables for interacting with the OpenAI API.
 
 ## Permissions
-
 All commands across the bots require administrator permissions to ensure only trusted users can execute critical actions.

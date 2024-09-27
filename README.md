@@ -48,7 +48,7 @@
 - **`!remove_channel`**:  
   Stop tracking the currently added YouTube channel.
 
-- **`!help`**:  
+- **`!bot_help`**:  
   Shows a list of available commands and their usage.
 
 ## 3. Freyja - OpenAI Discord Bot
@@ -95,7 +95,7 @@ A powerful and feature-rich Discord bot tailored for server administrators to ma
   Admins can use the `!view_schedule` command to view all upcoming scheduled announcements.
 
 - **Help Command**:  
-  Admins can use the `!help` command to get a list of all available commands and their descriptions.
+  Admins can use the `!bot_help` command to get a list of all available commands and their descriptions.
 
 ## Setup Instructions
 

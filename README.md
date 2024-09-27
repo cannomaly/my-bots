@@ -115,6 +115,31 @@ After setting up everything, you can run the bot with the following command:
 - Activate your virtual environment (if not already active): `source venv/bin/activate`
 - Run the bot: `python <bot-file>.py`
 
+## Setting Up Each Bot as a Systemd Service
+You can run each bot as a background service using systemd. Follow these steps to create and configure a systemd service for each bot.
+
+**1. Create a systemd Service File**
+For each bot, create a service file under `/etc/systemd/system/`. Replace `<bot-name>` with the appropriate bot name (e.g., `zeze`, `chewie`, `chomper`, or `freyja`).
+
+``` bash sudo nano /etc/systemd/system/<bot-name>.service ```
+
+**2. Add the Following Configuration to the Service File**
+```bash
+[Unit]
+Description=Discord Bot - <Bot-Name>
+After=network.target
+
+[Service]
+Type=simple
+User=your-username
+WorkingDirectory=/path/to/your/bot
+ExecStart=/path/to/your/venv/bin/python /path/to/your/bot/<bot-file>.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
 ### Bot-Specific Setup Notes:
 
 - **ZeZe**: Requires a channel ID for announcements. Update the `ANNOUNCEMENT_CHANNEL_ID` in the script.

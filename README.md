@@ -19,9 +19,9 @@
 ### Commands
 - No user-facing commands; the bot operates automatically upon server events.
 
-## 2. Chomper - YouTube Video Announcement Bot (Under Development)
+## 2. Chomper - YouTube Video Announcement Bot (In Development)
 
-*Chomper automatically posts announcements when new videos are uploaded to specific YouTube channels. Note: This bot is still under development.*
+*Chomper automatically posts announcements when new videos are uploaded to specific YouTube channels.*
 
 ### Features
 - **Auto Video Announcement**:  
@@ -31,10 +31,25 @@
   Admins can set specific YouTube channels for Chomper to track for new video uploads.
 
 - **Customizable Announcement Message**:  
-  The bot posts a custom message to notify members of new videos.
+  The bot posts a custom message to notify members of new videos. Admins can set placeholders like `{title}` for the video title and `{url}` for the video link.
+
+- **Single Announcement Channel**:  
+  All video announcements are posted in the same Discord channel (`#announcements`).
+
+- **Persistence Across Restarts**:  
+  Chomper saves tracked channels and their last video to continue tracking after a restart.
 
 ### Commands
-- No user-facing commands; the bot operates automatically upon detecting new videos.
+- **`!add_channel <youtube_channel_id> <announcement_message>`**:  
+  Track a new YouTube channel for video uploads.  
+  Example:  
+  `!add_channel UC_x5XG1OV2P6uZZ5FSM9Ttw "New video alert! {title}: {url}"`
+
+- **`!remove_channel`**:  
+  Stop tracking the currently added YouTube channel.
+
+- **`!help`**:  
+  Shows a list of available commands and their usage.
 
 ## 3. Freyja - OpenAI Discord Bot
 

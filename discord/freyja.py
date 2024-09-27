@@ -80,7 +80,7 @@ async def on_message(message):
                 while retries < max_retries:
                     try:
                         response = openai.ChatCompletion.create(
-                            model="gpt-4-turbo",  # Your tested model
+                            model="gpt-4o",  # Updated model to GPT-4o
                             messages=[
                                 {"role": "system", "content": "You are a helpful assistant."},
                                 {"role": "user", "content": user_message}
@@ -135,7 +135,7 @@ async def on_message(message):
             while retries < max_retries:
                 try:
                     response = openai.ChatCompletion.create(
-                        model="gpt-4-turbo",  # Your tested model
+                        model="gpt-4o",  # Updated model to GPT-4o
                         messages=[
                             {"role": "system", "content": "You are a helpful assistant."},
                             {"role": "user", "content": user_message}
@@ -166,7 +166,7 @@ async def on_message(message):
     elif message.content.startswith('.id_model'):
         try:
             response = openai.ChatCompletion.create(
-                model="gpt-4-turbo",  # Your tested model
+                model="gpt-4o",  # Updated model to GPT-4o
                 messages=[
                     {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": "Can you tell me which model you are?"}
